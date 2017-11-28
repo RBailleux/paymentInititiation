@@ -1,14 +1,53 @@
 html
   body
-    form(action="/charge", method="post")
-      article
-        label Amount: €5.00
-      script(
-        src="//checkout.stripe.com/v2/checkout.js",
-        class="stripe-button",
-        data-key=keyPublishable,
-        data-locale="auto",
-        data-description="Sample Charge",
-        data-image="http://i0.kym-cdn.com/photos/images/original/001/305/803/48d.png",
-        data-amount="500",
-        data-currency="eur")
+    script(src="https://js.stripe.com/v3/")
+    div(id="payment-request-button")
+    script.
+      var stripe = Stripe('pk_test_F1ENQzgGUlpcHkmfRqGZXn0P');
+      var paymentRequest = stripe.paymentRequest({
+        country: 'FR',
+        currency: 'eur',
+        total: {
+          label: 'Test',
+          amount: 500,
+        },
+      });
+      var elements = stripe.elements();
+      var prButton = elements.create('paymentRequestButton', {
+        paymentRequest: paymentRequest,
+        style: {
+          paymentRequestButton: {
+            type: 'default' | 'donate' | 'buy', // default: 'default'
+            theme: 'dark' | 'light' | 'light-outline', // default: 'dark'
+            height: '64px', // default: '40px', the width is always '100%'
+          },
+        },
+      });
+
+      // Check the availability of the Payment Request API first.
+      paymentRequest.canMakePayment().then(function(result) {
+        if (result) {
+          prButton.mount('#payment-request-button');
+        } else {
+          document.getElementById('payment-request-button').style.display = 'none';
+        }
+      });
+      paymentRequest.on('token', function(ev) {
+        // Send the token to your server to charge it!
+        fetch('/charge', {
+          method: 'POST',
+          body: JSON.stringify({token: ev.token.id}),
+        })
+        .then(function(response) {
+          if (response.ok) {
+            // Report to the browser that the payment was successful, prompting
+            // it to close the browser payment interface.
+            ev.complete('success');
+          } else {
+            // Report to the browser that the payment failed, prompting it to
+            // re-show the payment interface, or show an error message and close
+            // the payment interface.
+            ev.complete('fail');
+          }
+        });
+      });

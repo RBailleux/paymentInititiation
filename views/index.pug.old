@@ -1,0 +1,14 @@
+html
+  body
+    form(action="/charge", method="post")
+      article
+        label Montant: €5.00
+      script(
+        src="//checkout.stripe.com/v2/checkout.js",
+        class="stripe-button",
+        data-key=keyPublishable,
+        data-locale="auto",
+        data-description="Sample Charge",
+        data-image="http://i0.kym-cdn.com/photos/images/original/001/305/803/48d.png",
+        data-amount="500",
+        data-currency="eur")

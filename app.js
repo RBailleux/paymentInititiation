@@ -3,6 +3,7 @@ const keySecret = process.env.SECRET_KEY;
 
 const app = require("express")();
 const stripe = require("stripe")(keySecret);
+const PORT = process.env.PORT || 5000;
 
 app.set("view engine", "pug");
 app.use(require("body-parser").urlencoded({extended: false}));
@@ -27,4 +28,4 @@ app.post("/charge", (req, res) => {
   .then(charge => res.render("charge.pug"));
 });
 
-app.listen(4567);
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`));

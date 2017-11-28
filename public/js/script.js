@@ -3,14 +3,14 @@ var elements = stripe.elements();
 // Custom styling can be passed to options when creating an Element.
 var style = {
 base: {
-   color: "#32325D",
+   color: "white",
    fontWeight: 500,
    fontFamily: "Inter UI, Open Sans, Segoe UI, sans-serif",
    fontSize: "15px",
    fontSmoothing: "antialiased",
 
    "::placeholder": {
-     color: "#CFD7DF"
+     color: "#AEAEAE"
    }
  }
 };

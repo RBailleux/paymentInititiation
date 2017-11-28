@@ -1,0 +1,178 @@
+.formStyle {
+  background-color: #9169d8;
+  max-width: 800px;
+  margin:0 auto;
+}
+
+.formStyle * {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.formStyle form {
+
+}
+
+.formStyle fieldset {
+  border: 1px solid #b5a4ed;
+  padding: 15px;
+  border-radius: 6px;
+}
+
+.formStyle fieldset legend {
+  margin: 0 auto;
+  padding: 0 10px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #cdd0f8;
+  background-color: #9169d8;
+}
+
+.formStyle fieldset legend + * {
+  clear: both;
+}
+
+.formStyle .card-only {
+  display: block;
+}
+.formStyle .payment-request-available {
+  display: none;
+}
+
+.formStyle .row {
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 0 10px;
+}
+
+.formStyle .field {
+  position: relative;
+  width: 100%;
+}
+
+.formStyle .field + .field {
+  margin-left: 10px;
+}
+
+.formStyle label {
+  width: 100%;
+  color: #cdd0f8;
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.formStyle .input {
+  width: 100%;
+  color: #fff;
+  background: transparent;
+  padding: 5px 0 6px 0;
+  border-bottom: 1px solid #a988ec;
+  transition: border-color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.formStyle .input::-webkit-input-placeholder {
+  color: #bfaef6;
+}
+
+.formStyle .input::-moz-placeholder {
+  color: #bfaef6;
+}
+
+.formStyle .input:-ms-input-placeholder {
+  color: #bfaef6;
+}
+
+.formStyle .input.StripeElement--focus,
+.formStyle .input:focus {
+  border-color: #fff;
+}
+.formStyle .input.StripeElement--invalid {
+  border-color: #ffc7ee;
+}
+
+.formStyle input:-webkit-autofill,
+.formStyle select:-webkit-autofill {
+  -webkit-text-fill-color: #fce883;
+  transition: background-color 100000000s;
+  -webkit-animation: 1ms void-animation-out;
+}
+
+.formStyle .StripeElement--webkit-autofill {
+  background: transparent !important;
+}
+
+.formStyle input,
+.formStyle button,
+.formStyle select {
+  -webkit-animation: 1ms void-animation-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  border-style: none;
+  border-radius: 0;
+}
+
+.formStyle select.input,
+.formStyle select:-webkit-autofill {
+  background-image: url('data:image/svg+xml;utf8,<svg width="10px" height="5px" viewBox="0 0 10 5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="#fff" d="M5.35355339,4.64644661 L9.14644661,0.853553391 L9.14644661,0.853553391 C9.34170876,0.658291245 9.34170876,0.341708755 9.14644661,0.146446609 C9.05267842,0.0526784202 8.92550146,-2.43597394e-17 8.79289322,0 L1.20710678,0 L1.20710678,0 C0.930964406,5.07265313e-17 0.707106781,0.223857625 0.707106781,0.5 C0.707106781,0.632608245 0.759785201,0.759785201 0.853553391,0.853553391 L4.64644661,4.64644661 L4.64644661,4.64644661 C4.84170876,4.84170876 5.15829124,4.84170876 5.35355339,4.64644661 Z" id="shape"></path></svg>');
+  background-position: 100%;
+  background-size: 10px 5px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 20px;
+}
+
+.formStyle button {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin: 20px 0 0;
+  background-color: #fff;
+  border-radius: 6px;
+  color: #9169d8;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.formStyle button:active {
+  background-color: #cdd0f8;
+}
+
+.formStyle .error svg .base {
+  fill: #fff;
+}
+
+.formStyle .error svg .glyph {
+  fill: #9169d8;
+}
+
+.formStyle .error .message {
+  color: #fff;
+}
+
+.formStyle .success .icon .border {
+  stroke: #bfaef6;
+}
+
+.formStyle .success .icon .checkmark {
+  stroke: #fff;
+}
+
+.formStyle .success .title {
+  color: #fff;
+}
+
+.formStyle .success .message {
+  color: #cdd0f8;
+}
+
+.formStyle .success .reset path {
+  fill: #fff;
+}

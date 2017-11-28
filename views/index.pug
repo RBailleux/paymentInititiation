@@ -1,53 +1,38 @@
 html
+  head
+    link(href="/public/css/style.css", rel="stylesheet", type="text/css")
   body
+  
     script(src="https://js.stripe.com/v3/")
-    div(id="payment-request-button")
-    script.
-      var stripe = Stripe('pk_test_F1ENQzgGUlpcHkmfRqGZXn0P');
-      var paymentRequest = stripe.paymentRequest({
-        country: 'FR',
-        currency: 'eur',
-        total: {
-          label: 'Test',
-          amount: 500,
-        },
-      });
-      var elements = stripe.elements();
-      var prButton = elements.create('paymentRequestButton', {
-        paymentRequest: paymentRequest,
-        style: {
-          paymentRequestButton: {
-            type: 'default' | 'donate' | 'buy', // default: 'default'
-            theme: 'dark' | 'light' | 'light-outline', // default: 'dark'
-            height: '64px', // default: '40px', the width is always '100%'
-          },
-        },
-      });
-
-      // Check the availability of the Payment Request API first.
-      paymentRequest.canMakePayment().then(function(result) {
-        if (result) {
-          prButton.mount('#payment-request-button');
-        } else {
-          document.getElementById('payment-request-button').style.display = 'none';
-        }
-      });
-      paymentRequest.on('token', function(ev) {
-        // Send the token to your server to charge it!
-        fetch('/charge', {
-          method: 'POST',
-          body: JSON.stringify({token: ev.token.id}),
-        })
-        .then(function(response) {
-          if (response.ok) {
-            // Report to the browser that the payment was successful, prompting
-            // it to close the browser payment interface.
-            ev.complete('success');
-          } else {
-            // Report to the browser that the payment failed, prompting it to
-            // re-show the payment interface, or show an error message and close
-            // the payment interface.
-            ev.complete('fail');
-          }
-        });
-      });
+    .formStyle
+      form#payment-form(action='/charge', method='post')
+        fieldset
+          legend Informations de paiement
+          .row
+            .field
+              label(for='lastname') Nom
+              input#lastname.input(data-tid='lastname', name='lastname', type='text', placeholder='Bailleux', required='')
+            .field
+              label(for='firstname') Prénom
+              input#firstname.input(data-tid='firstname', name='firstname', type='text', placeholder='Robin', required='')
+          .row
+            .field
+              label(for='email') Email
+              input#email.input(data-tid='email', type='text', name='email', placeholder='robin.bailleux@gmail.com', required='')
+            .field
+              label(for='phone') Téléphone
+              input#phone.input(data-tid='phone', type='text', name='phone', placeholder='01 23 45 67 89', required='')
+          .row
+            .field
+              label(for='address') Addresse
+              input#address.input(data-tid='address', type='text', name='address', placeholder='16 rue Rivoli', required='')
+            .field
+              label(for='city') Ville
+              input#city.input(data-tid='city', type='text', name='city', placeholder='Paris', required='')
+          .row
+            .field
+              label(for='card', data-tid='card') Carte de paiement
+              #card-element.input
+          button(type='submit', data-tid='pay') Payer 5€
+          #card-errors(role='alert')
+    script(src="/public/js/script.js")
